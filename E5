@@ -1,0 +1,63 @@
+'Zadejte v jednom cyklu řadu čísel. V dalších cyklech program poté spočítá jejich součet, průměr, maximum, minimum. Pak
+'se program ještě zeptá, zda chcete zobrazit součet druhých mocnin.
+'------------------------------------------------------------------------------------------------------------------------
+
+Sub main()
+
+    Dim pole(1 To 50) As Integer, i As Integer, x As Integer, max As Integer, min As Integer, prumer As Integer, answer As Integer, mocnina As Integer, celkem As Integer, soucet As Integer
+    Dim s As String, m As String
+      
+        min = 0: max = 0
+        s = "Byla zadana tato cisla : " + " "
+
+'---------------------------------------------
+'Plneni pole inputboxem + jejich soucet + min cislo a max cislo a prumer
+'---------------------------------------------
+       Do
+            i = i + 1
+            pole(i) = InputBox("Zadavej cisla (max.50). Klavesa 0 zadavani ukonci")
+            
+            If pole(i) <> 0 Then        ' akceptuje do pole pouze cisla, ktera nejsou rovny 0
+               
+                s = s + " " + Str(pole(i))
+                soucet = soucet + pole(i)
+                    
+                    If i = 1 Then
+                        min = pole(i)  ' prvni zadane cislo stanovi hranici pro min a maximum
+                        max = pole(i)
+                    End If
+                    
+                    If pole(i) < min Then  ' Pokud nove cislo v poli je mensi, nebo vetsi stanovi novou hranici
+                        min = pole(i)
+                    ElseIf pole(i) > max Then
+                        max = pole(i)
+                    End If
+                    
+                    prumer = soucet / i
+            
+            End If
+       
+       Loop Until pole(i) = 0
+       
+    MsgBox s + Chr(10) + "Soucet cisel je : " + Str(soucet) + Chr(10) + "Nejmensi cislo : " + Str(min) + Chr(10) + "Nejvetsi cislo je : " + Str(max) + Chr(10) + "Prumer cisel je : " + Str(prumer)
+         
+'---------------------------------------------
+'Doplnkovy dotaz, zda se jeste sobrazi soucet druhych mocnin
+'---------------------------------------------
+            answer = MsgBox("Pokud ano, ukazu soucet druhych mocnin.", vbQuestion + vbYesNo + vbDefaultButton2, "Prejete si jeste opruzovat?")
+            
+    
+                If answer = vbYes Then  'podminka, kdyz button = "Yes"
+                    
+                        For x = 1 To i
+                            mocnina = pole(x) ^ 2
+                            celkem = celkem + mocnina
+                        Next x
+            
+                Else                      'Kdyz button = "No"
+                    MsgBox "Nashledanou!"
+                End If
+
+                        MsgBox Str(celkem)
+End Sub
+
