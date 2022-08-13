@@ -1,0 +1,52 @@
+'Vygenerujte několik hodů kostkou. Program vypíše, kolikrát padla jednotlivá čísla a vyjádří procentuálně. Jaký byl průměr?
+'Druhá varianta: ověřte, že při zaokrouhlování pomocí Round padají krajní čísla (1 a 6) s poloviční četností. Přitom Int
+'pracoval správně, všechny hodnoty mají kolem 100/6=16,6 %.
+'-------------------------------------------------------------------------------------------------------------------------
+Sub main()
+
+    Dim hody(1 To 150) As Integer
+    Dim cetnost(1 To 6) As Integer
+    Dim s As String, m As String
+    Dim i As Integer, pocet As Integer, prumer As Integer
+    
+    
+        pocet = InputBox("Zadej kolik bude hodu kostkou. 100 je maximum!")
+        s = "Bylo hozeno" + Str(pocet) + "X" + " " + Chr(10) + "padla tato cisla:"
+        
+'===========================
+'Generovani poctu hodu, urcuje uzivatel. Plnění pole hody(i)
+'===========================
+        For i = 1 To pocet
+            hody(i) = Int(Rnd() * 6) + 1
+            s = s + Str(hody(i))
+        Next i
+'===========================
+'Pocitani cetnosti vyskytu cisel
+'===========================
+        For i = 1 To pocet
+            If hody(i) = 1 Then
+                cetnost(1) = cetnost(1) + 1
+            ElseIf hody(i) = 2 Then
+                cetnost(2) = cetnost(2) + 1
+            ElseIf hody(i) = 3 Then
+                cetnost(3) = cetnost(3) + 1
+            ElseIf hody(i) = 4 Then
+                cetnost(4) = cetnost(4) + 1
+            ElseIf hody(i) = 5 Then
+                cetnost(5) = cetnost(5) + 1
+            ElseIf hody(i) = 6 Then
+                cetnost(6) = cetnost(6) + 1
+            End If
+        Next i
+        
+        MsgBox s + Chr(10) + "Cislo 1:" + Str(cetnost(1)) + Chr(10) + "Cislo 2:" + Str(cetnost(2)) + Chr(10) + "Cislo 3:" + Str(cetnost(3)) + Chr(10) + "Cislo 4:" + Str(cetnost(4)) + Chr(10) + "Cislo 5:" + Str(cetnost(5)) + Chr(10) + "Cislo 6:" + Str(cetnost(6))
+'===========================
+'Pocitani prumeru
+'===========================
+        For i = 1 To 6
+            prumer = cetnost(i) / pocet * 100
+            m = m + Chr(10) + "Procento vyskytu cisla:" + Str(i) + " je: " + Str(prumer) + "%"
+        Next i
+        
+        MsgBox m
+End Sub
