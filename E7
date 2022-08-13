@@ -1,0 +1,62 @@
+'Zadejte postupně do pole několik různých slov. Každé slovo přitom budete zadávat zvlášť. Poté znovu zadejte jedno
+'z těchto slov. Program vypíše číslo pořadí, v jakém bylo toto slovo zadáno (na jaké pozici se vyskytuje v poli).
+'--------------------------------------------------------------------------------------------------------------------
+
+Sub main()
+
+    Dim pole(1 To 20) As Variant, x As Variant
+    Dim hlaseni As Variant
+    Dim i As Integer, y As String, s As String
+    Dim pravda As Boolean
+    
+        s = "Hledane slovo : " + " "
+        i = 1
+'----------------------------------------------------
+'Plneni pole uzivatelem
+'----------------------------------------------------
+        Do
+            pravda = False
+            
+            x = InputBox("Zadavej slova (max.20). Klavesa 0 zadavani ukonci")
+                
+                If x = 0 Then
+                    Exit Do
+                ElseIf (x >= "a" And x <= "z") Then
+                Else
+                    hlaseni = MsgBox("Toto neni cislo, opakuj", vbOKOnly + vbCritical)
+                    pravda = True
+                End If
+                
+                If (x >= "a" And x <= "z") Then
+                    pole(i) = x
+                    i = i + 1
+                End If
+                    
+        Loop While x <> "" Or pravda = True
+'----------------------------------------------------
+'otazka, jake slovo a jeho poradove cislo se bude hledat
+'----------------------------------------------------
+        Do
+            pravda = False
+                
+            y = InputBox("Zadej slovo, ktere se bude hledat. Prvni shoda program ukonci")
+                If (y >= "a" And y <= "z") Then
+                Else
+                    hlaseni = MsgBox("Toto neni cislo, opakuj", vbOKOnly + vbCritical)
+                    pravda = True
+                End If
+        Loop While pravda = True
+'----------------------------------------------------
+'Prohledavani pole
+'----------------------------------------------------
+            
+        For x = 1 To i - 1
+            
+            If y = pole(x) Then
+              s = s + y + "  " + " bylo zadavano jako :" + Str(x) + " " + " v poradi."
+              Exit For
+            End If
+        Next x
+        
+            MsgBox s
+End Sub
