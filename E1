@@ -1,0 +1,57 @@
+'Řadu slov z předchozího příkladu vypište v obráceném pořadí, a pak vypíše pouze sudá a pak pouze lichá slova.
+'-------------------------------------------------------------------------------------------------------------
+    
+Sub main()
+
+    Dim pole(1 To 10) As Variant, x As Variant
+    Dim hlaseni As Variant
+    Dim i As Integer, j As Integer
+    Dim y As String, s As String, m As String, a As String
+    Dim pravda As Boolean
+    
+        s = "Zadane slova: "
+        m = "Suda slova: "
+        a = "Licha slova"
+        i = 1
+        j = 1
+'----------------------------------------------------
+'Plneni pole uzivatelem
+'----------------------------------------------------
+        Do
+            pravda = False
+            
+            x = InputBox("Zadavej slova (max.10). Klavesa 0 zadavani ukonci")
+                
+                If x = 0 Then
+                    Exit Do
+                ElseIf (x >= "a" And x <= "z") Then
+                Else
+                    hlaseni = MsgBox("Toto neni pismeno! Opakuj", vbOKOnly + vbCritical, "POZOR CO ZADAVAS!!!")
+                    pravda = True
+                End If
+                
+                If (x >= "a" And x <= "z") Then
+                    pole(i) = x
+                    i = i + 1
+                End If
+                    
+        Loop While x <> "" Or pravda = True
+'----------------------------------------------------
+'odpocitavani smycky for od zadu + vypsani hodnot pole
+'----------------------------------------------------
+        For j = i - 1 To 1 Step -1
+            
+            s = s + Chr(10) + " " + pole(j) + "  " + "poradi:" + " " + Str(j)
+                
+                If Len(pole(j)) Mod 2 = 0 Then  'Funkce "Len" meri delku hodnoty v poli. Modulo rozhoduje zda je suda, nebo licha
+                    m = m + Chr(10) + pole(j)
+                Else
+                    a = a + Chr(10) + pole(j)
+                End If
+        Next j
+            
+            MsgBox s
+            MsgBox m
+            MsgBox a
+            
+End Sub
