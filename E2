@@ -1,0 +1,39 @@
+'Zadejte několik čísel, ukončete nulou. Potom zadáte některé z předtím zadaných čísel. Program vypíše, kolikrát toto číslo
+'předtím padlo.
+'-------------------------------------------------------------------------------------------------------------------------
+Sub main()
+
+    Dim cislapole(1 To 10) As Integer
+    Dim cisla As Integer, i As Integer, min As Integer, vyskyt As Integer, last As Integer, x As Integer
+    Dim s As String
+
+        i = 1
+'------------------------------------------
+'napleneni pole pomoci inputboxu
+'------------------------------------------
+    Do
+        cisla = InputBox("Zadej cisla, nula je konec")
+            If cisla <> 0 Then
+                 cislapole(i) = cisla
+                 i = i + 1
+                 s = s + Str(cisla)
+            End If
+        
+    Loop Until cisla = 0
+    
+    last = i - 1
+'------------------------------------------
+'Hledani, kolikrat se cislo opakovalo
+'------------------------------------------
+x = InputBox("Zadej cislo, pro ktere bude spocitan pocet vyskytu")
+
+    For i = 1 To last
+        If cislapole(i) = x Then
+            vyskyt = vyskyt + 1
+        End If
+    Next i
+'==========================================
+ MsgBox "Zadane cisla byli:" + s + Chr(10) + "Cislo" + Str(x) + " se vyskytlo celkem:" + Str(vyskyt)
+ 
+    
+End Sub
