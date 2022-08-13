@@ -1,0 +1,47 @@
+'Zadejte postupně několik písmen. Program potom náhodně vygeneruje slovo (shluk písmen), které se bude skládat z těchto
+'písmen (např. vždy 5 znaků). Písmena se mohou opakovat a nemusí být použita všechna. Pozn. zadávání můžete ukončit
+'třeba číslem 0 nebo třeba stiskem klávesy enter. (Varianta: vygenerujte třeba 10 slov.)
+'Varianta: Místo zadání z klávesnice vygeneruje prvotních několik písmen počítač.
+'-----------------------------------------------------------------------------------------------------------------------
+Sub main()
+
+    Dim i As Integer, x As Integer, y As Integer, generator As Integer, j As Integer, smycka As Integer
+    Dim Znaky(1 To 26) As String
+    Dim s As String, slovo As String, m As String
+        
+        m = "Slova jsou :" + Chr(10) + Chr(10)
+'--------------------------------------------
+'Plneni pole pismeny abecedy
+'--------------------------------------------
+    For i = 1 To 26
+        Znaky(i + 0) = Chr(i + 64)
+    Next i
+'--------------------------------------------
+'Otazka kolik znaku budou mit slova a pocet vygenerovanych slov
+'--------------------------------------------
+   x = InputBox("Zadej, kolik znaku budou slova obsahovat")
+   y = InputBox("Zadej, kolik slov se vygeneruje")
+'--------------------------------------------
+'Generovani poctu slov o urcene delce znaku
+'--------------------------------------------
+Do
+    i = 1
+    
+    For j = 1 To x
+        
+        generator = Int(Rnd() * 25) + 1 'Generovani cisel, ktera se prevedou na hodnotu v poli(tedy na i), kde pod cislem i je schovan znak v poli
+         
+            i = generator
+            slovo = Znaky(i)
+            m = m + slovo
+    Next j
+        
+        smycka = smycka + 1  'Smycka pocita smycku loop a podle toho generuje pocty slov
+   
+                m = m + Chr(10)
+            
+Loop While smycka <> y
+        
+    MsgBox m
+
+End Sub
